@@ -1,0 +1,303 @@
+/* Gaya dasar untuk halaman HTML */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+h2{
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Gaya untuk denah warehouse */
+.warehouse {
+    width: 1000px; /* Ubah sesuai kebutuhan lebar denah */
+    height: 465px; /* Ubah sesuai kebutuhan tinggi denah */
+    margin: 0 auto;
+    position: relative;
+    background-color: #20a420;
+}
+
+/* Gaya untuk setiap ruangan dalam warehouse */
+.room {
+    width: 250px; /* Ubah sesuai kebutuhan lebar ruangan */
+    height: 25px; /* Ubah sesuai kebutuhan tinggi ruangan */
+    background-color: #ffffff;
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    border: 1.5px solid #e0dddd;
+    margin-top: 0px; /* Ubah sesuai kebutuhan jarak atas */
+    font-size: 12px;
+}
+
+#room1 {
+    top: 0px;
+    width: 60px;
+    height: 56px;
+    left: 125px;  
+}
+
+#room2 {
+    top: 0px;
+    width: 60px;
+    height: 56px;
+    left: 69px;
+    font-size: 12px;
+}
+
+#room3 {
+    top: 0px;
+    width: 70px;
+    height: 120px;
+    left: 0px;
+    font-size: 12px;
+}
+
+#room4 {
+    top: 119px;
+    width: 70px;
+    height: 30px;
+    left: 0px;
+    font-size: 6px;
+}
+
+#room5 {
+    top: 145px;
+    width: 70px;
+    height: 245px;
+    left: 0px;   
+}
+
+#room6 {
+    top: 390px;
+    left: 0px;
+    height: 25px;
+    width: 70px;
+    font-size: 6px;
+    line-height: 10px;
+}
+
+#room7 {
+    top: 440px;
+    left: 0px;
+    height: 25px;
+    width: 40px;
+    font-size: 8px;
+    line-height: 10px;
+}
+
+#room8 {
+    top: 440px;
+    left: 40px;
+    height: 25px;
+    width: 30px;
+    font-size: 6px;
+    line-height: 10px;
+}
+
+#room9 {
+    top: 0px;
+    width: 400px;
+    height: 12px;
+    right: 160px;
+}
+
+#room10 {
+    top: 30px;
+    left: 150px;
+}
+
+#room11 {
+    top: 30px;
+    width: 265px;
+    right: 295px;
+}
+
+#room12 {
+    top: 30px;
+    width: 135px;
+    right: 160px;   
+}
+
+#room13 {
+    top: 75px;
+    width: 300px;
+    left: 100px;
+}
+
+#room14 {
+    top: 75px;
+    width: 333px;
+    right: 227px;
+}
+
+#room15 {
+    top: 120px;
+    width: 300px;
+    left: 100px;
+}
+
+#room16 {
+    top: 120px;
+    width: 333px;
+    right: 227px;
+}
+
+#room17 {
+    top: 165px;
+    width: 300px;
+    left: 100px;
+}
+
+#room18 {
+    top: 165px;
+    width: 333px;
+    right: 227px;
+}
+
+#room19 {
+    top: 75px;
+    width: 67px;
+    height: 115px;
+    right: 160px;
+    font-size: 12px;
+}
+
+#room20 {
+    top: 210px;
+    width: 300px;
+    left: 100px;
+}
+
+#room21 {
+    top: 210px;
+    width: 200px;
+    right: 360px;
+}
+
+#room22 {
+    top: 210px;
+    width: 200px;
+    right: 160px;  
+}
+
+#room23 {
+    top: 255px;
+    width: 300px;
+    left: 100px;
+}
+
+#room24 {
+    top: 255px;
+    width: 200px;
+    right: 360px;
+}
+
+#room25 {
+    top: 255px;
+    width: 200px;
+    right: 160px;  
+}
+
+#room26 {
+    top: 300px;
+    width: 300px;
+    left: 100px;
+}
+
+#room27 {
+    top: 300px;
+    width: 400px;
+    right: 160px;
+}
+
+#room28 {
+    top: 345px;
+    width: 400px;
+    right: 160px;
+}
+
+#room29 {
+    top: 370px;
+    width: 400px;
+    height: 75px;
+    right: 160px;
+    
+}
+
+#room30 {
+    top: 440px;
+    width: 400px;
+    right: 160px;
+}
+
+#room31 {
+    top: 345px;
+    left: 100px;
+    height: 95px;
+    width: 90px;  
+}
+
+#room32 {
+    top: 440px;
+    left: 100px;
+    height: 25px;
+    width: 90px;
+    font-size: 10px;
+}
+
+#room33 {
+    top: 345px;
+    left: 190px;
+    height: 45px;
+    width: 210px;
+}
+
+#room34{
+    top: 390px;
+    left: 190px;
+    height: 76px;
+    width: 140px;   
+}
+
+#room35{
+    top: 390px;
+    left: 330px;
+    height: 76px;
+    width: 70px;
+    font-size: 12px;
+}
+
+#room36 {
+    top: 0px;
+    height: 100px;
+    width: 70px;
+    right: 50px;  
+}
+
+#room37 {
+    top: 100px;
+    height: 265px;
+    width: 120px;
+    right: 0px;  
+}
+
+#room38 {
+    top: 345px;
+    height: 120px;
+    width: 120px;
+    right: 0px;  
+}
+
+#room39{
+    top: 0px;
+    height: 180px;
+    width: 50px;
+    right: 0px;
+    font-size: 10px;
+}
