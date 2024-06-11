@@ -15,11 +15,21 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <!-- Custom styles for this template-->
     <link href="{{asset('template/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="{{ asset('template/css/denahrak.css') }}">
-    <link rel="stylesheet" href="{{ asset('template/css/styledenah.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('template/css/styledenah.css') }}">   
+    <link rel="stylesheet" href="{{ asset('template/css/stylepagination.css') }}">   
+    <!-- DataTable -->
+    <link rel="stylesheet" href="{{asset('template/vendor/datatables/dataTables.bootstrap4.css')}}">
+    <!-- Menggunakan CDN untuk Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Menggunakan CDN untuk Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -61,16 +71,16 @@
 
         <!-- Nav Item - Kedatangan -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
+            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-truck"></i>
-                <span>Kedatangan</span>
+                <span>Kedatangan Material</span>
             </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingPages"
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="utilities-color.html">Diproses</a>
-                    <a class="collapse-item" href="utilities-border.html">Diantar</a>
+                    <a class="collapse-item" href="prosdtg">Diproses</a>
+                    <a class="collapse-item" href="prosdtg">Diantar</a>
                 </div>
             </div>
         </li>
@@ -149,7 +159,6 @@
 
                         <!-- Page Heading -->
                         @yield('content')                        
-
                     </div>
                     <!-- /.container-fluid -->
 
@@ -206,6 +215,109 @@
 
         <!-- Custom scripts for all pages-->
         <script src="{{asset('template/js/sb-admin-2.min.js')}}"></script>
+        
+        <script src="{{asset('template/vendor/datatables/jquery.dataTables.js')}}"></script>
+        <script src="{{asset('template/vendor/datatables/dataTables.bootstrap4.js')}}"></script>
+
+        <script>
+             $(document).ready(function () {
+            $('#filteredBykode').change(function () {
+                var kodeValue = $(this).val();
+
+                // Make AJAX request
+                $.getJSON("/kapsrak/filter/" + kodeValue, function (data) {
+                    console.log(data); // Log server response
+
+                    if (Array.isArray(data)) {
+                        displayTable(data);
+                    } else {
+                        console.error("Invalid data format received from the server.");
+                    }
+                })
+                .fail(function (jqxhr, textStatus, error) {
+                    console.error("AJAX Request Failed:", textStatus, error);
+                    console.log(jqxhr.responseText); // Log response text for more details
+                });
+
+                $("#tabelrak").DataTables().ajax.reload(null, false);
+            });
+
+            function displayTable(data) {
+                var table = '<thead><tr><th>Kode Rak</th></tr></thead><tbody>';
+                
+                // Loop through the data and create table rows
+                for (var i = 0; i < data.length; i++) {
+                    table += '<tr>';
+                    table += '<td>' + data[i].kode + '</td>';
+                    // Add more columns if needed
+                    table += '</tr>';
+                }
+
+                table += '</tbody>';
+
+                // Clear the table and then append new content
+                $('#dataTable').empty().html(table);
+            }
+
+        });
+
+        $(function(){
+            $("#tabelrak").DataTable({
+                scrollX:true,
+                processing:true,
+                paging:false,
+                scrollY:"500px",
+                autoWidth:true,
+                "ajax":{
+                    "url": "{{route('kapsrak.getdata')}}",
+                    "type": "get",
+                    "data": function(d){
+                        d.rak= $("#filteredBykode").val()
+                    },
+                    "dataType": "JSON"
+                },
+                columns:[
+                    {
+                        data: "kode",
+                        nama: "kode"
+                    },
+                    {
+                        data: "alamat",
+                        nama: "alamat"
+                    },
+                    {
+                        data: "panjang",
+                        nama: "panjang"
+                    },
+                    {
+                        data: "lebar",
+                        nama: "lebar"
+                    },
+                    {
+                        data: "tinggi",
+                        nama: "tinggi"
+                    },
+                    {
+                        data: "tinggiAts",
+                        nama: "tinggiAts"
+                    },
+                    {
+                        data: "tinggiTtl",
+                        nama: "tinggiTtl"
+                    },
+                    {
+                        data: "volume",
+                        nama: "volume"
+                    },
+                    {
+                        render:function(data, type, row){
+                            return "tes"
+                        }
+                    }
+                ]
+            })
+        })
+        </script>
     </body>
 
 </html>

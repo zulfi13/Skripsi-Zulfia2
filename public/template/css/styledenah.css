@@ -1,26 +1,23 @@
 /* Gaya dasar untuk halaman HTML */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Roboto", sans-serif;
     background-color: #f0f0f0;
-}
-
-h2{
-    font-family: Arial, sans-serif;
-    text-align: center;
 }
 
 /* Gaya untuk denah warehouse */
 .warehouse {
-    width: 1000px; /* Ubah sesuai kebutuhan lebar denah */
-    height: 465px; /* Ubah sesuai kebutuhan tinggi denah */
+    width: 1004px; /* Ubah sesuai kebutuhan lebar denah */
+    height: 504.125px; /* Ubah sesuai kebutuhan tinggi denah */
     margin: 0 auto;
     position: relative;
-    background-color: #20a420;
+    border: 2px solid #000000;
+    background-color: #008f00;
+    margin-bottom: 50px;
 }
 
 /* Gaya untuk setiap ruangan dalam warehouse */
 .room {
-    width: 250px; /* Ubah sesuai kebutuhan lebar ruangan */
+    max-width: 100%; /* Ubah sesuai kebutuhan lebar ruangan */
     height: 25px; /* Ubah sesuai kebutuhan tinggi ruangan */
     background-color: #ffffff;
     color: #000000;
@@ -30,274 +27,332 @@ h2{
     text-align: center;
     line-height: 20px;
     position: absolute;
-    border: 1.5px solid #e0dddd;
-    margin-top: 0px; /* Ubah sesuai kebutuhan jarak atas */
-    font-size: 12px;
+    border: 1.5px solid transparent;;
+    font-size: 9px;
 }
 
 #room1 {
     top: 0px;
-    width: 60px;
-    height: 56px;
-    left: 125px;  
+    width: 72.5px;
+    height: 127.875px;
+    left: 0px;  
+    background-color: #828181;
+    border: 1px solid #e3e3e3
 }
-
 #room2 {
-    top: 0px;
-    width: 60px;
-    height: 56px;
-    left: 69px;
-    font-size: 12px;
+    top: 127.875px;
+    width: 72.5px;
+    height: 46.5px;
+    left: 0px;  
+    border: 1px solid #e3e3e3
 }
-
 #room3 {
-    top: 0px;
-    width: 70px;
-    height: 120px;
-    left: 0px;
-    font-size: 12px;
+    top: 174.375px;
+    width: 72.5px;
+    height: 255.75px;
+    left: 0px;  
+    border: 1px solid #e3e3e3
 }
-
 #room4 {
-    top: 119px;
-    width: 70px;
-    height: 30px;
-    left: 0px;
-    font-size: 6px;
+    top: 430.125px;
+    width: 57px;
+    height: 23.25px;
+    left: 0px;  
+    border: 1px solid #e3e3e3;
 }
-
 #room5 {
-    top: 145px;
-    width: 70px;
-    height: 245px;
-    left: 0px;   
+    top: 476.625px;
+    width: 72.5px;
+    height: 23.25px;
+    left: 0px;    
 }
-
 #room6 {
-    top: 390px;
-    left: 0px;
-    height: 25px;
-    width: 70px;
-    font-size: 6px;
-    line-height: 10px;
+    top: 0px;
+    width: 57.5px;
+    height: 58.125px;
+    left: 72.5px;  
+    background-color: #828181;
+    border: 1px solid #e3e3e3
 }
-
 #room7 {
-    top: 440px;
-    left: 0px;
-    height: 25px;
-    width: 40px;
-    font-size: 8px;
-    line-height: 10px;
+    top: 0px;
+    width: 57.5px;
+    height: 58.125px;
+    left: 130px;  
 }
-
 #room8 {
-    top: 440px;
-    left: 40px;
-    height: 25px;
+    top: 0px;
     width: 30px;
+    height: 11.625px;
+    left: 214.125px;  
     font-size: 6px;
-    line-height: 10px;
+    border: 1px solid #e3e3e3
 }
-
 #room9 {
     top: 0px;
-    width: 400px;
-    height: 12px;
-    right: 160px;
+    width: 30px;
+    height: 11.625px;
+    left: 324.125px;  
+    font-size: 7.5px;
+    border: 1px solid #e3e3e3
 }
-
 #room10 {
-    top: 30px;
-    left: 150px;
+    top: 0px;
+    width: 480px;
+    height: 11.625px;
+    left: 354.125px;  
+    font-size: 7.5px;
+    border: 1px solid #e3e3e3
 }
-
 #room11 {
-    top: 30px;
-    width: 265px;
-    right: 295px;
+    top: 35.125px;
+    width: 180px;
+    height: 23.25px;
+    left: 149px;  
 }
-
 #room12 {
-    top: 30px;
+    top: 35.125px;
     width: 135px;
-    right: 160px;   
+    height: 23.25px;
+    left: 379px; 
 }
-
 #room13 {
-    top: 75px;
-    width: 300px;
-    left: 100px;
+    top: 35.125px;
+    width: 320px;
+    height: 23.25px;
+    left: 514px; 
 }
-
 #room14 {
-    top: 75px;
-    width: 333px;
-    right: 227px;
+    top: 81.625px;
+    width: 273.5px;
+    height: 23.25px;
+    left: 105px; 
 }
-
 #room15 {
-    top: 120px;
-    width: 300px;
-    left: 100px;
+    top: 81.625px;
+    width: 350px;
+    height: 23.25px;
+    left: 411px; 
 }
-
 #room16 {
-    top: 120px;
-    width: 333px;
-    right: 227px;
+    top: 128.125px;
+    width: 243.5px;
+    height: 23.25px;
+    left: 105px; 
 }
-
 #room17 {
-    top: 165px;
-    width: 300px;
-    left: 100px;
+    top: 128.125px;
+    width: 30px;
+    height: 23.25px;
+    left: 348.5px; 
+    font-size: 4px;
 }
-
 #room18 {
-    top: 165px;
-    width: 333px;
-    right: 227px;
+    top: 128.125px;
+    width: 30px;
+    height: 23.25px;
+    left: 411px;
+    font-size: 7.5px;
+    background-color: #fbff12;
 }
-
 #room19 {
-    top: 75px;
-    width: 67px;
-    height: 115px;
-    right: 160px;
-    font-size: 12px;
+    top: 128.125px;
+    width: 321.5px;
+    height: 23.25px;
+    left: 439.5px; 
+    font-size: 7.5px;
 }
-
 #room20 {
-    top: 210px;
-    width: 300px;
-    left: 100px;
+    top: 174.625px;
+    width: 243.5px;
+    height: 23.25px;
+    left: 105px; 
 }
-
 #room21 {
-    top: 210px;
-    width: 200px;
-    right: 360px;
+    top: 174.625px;
+    width: 350px;
+    height: 23.25px;
+    left: 411px; 
 }
-
 #room22 {
-    top: 210px;
-    width: 200px;
-    right: 160px;  
+    top: 81.625px;
+    width: 72px;
+    height: 116.5px;
+    left: 761px; 
+    background-color: aqua;
 }
-
 #room23 {
-    top: 255px;
-    width: 300px;
-    left: 100px;
+    top: 220.125px;
+    width: 273.5px;
+    height: 23.25px;
+    left: 105px; 
 }
-
 #room24 {
-    top: 255px;
-    width: 200px;
-    right: 360px;
+    top: 220.125px;
+    width: 275px;
+    height: 23.25px;
+    left: 411px; 
 }
-
 #room25 {
-    top: 255px;
-    width: 200px;
-    right: 160px;  
+    top: 220.125px;
+    width: 71px;
+    height: 23.25px;
+    left: 686px; 
+    background-color: #fbff12;
 }
-
 #room26 {
-    top: 300px;
-    width: 300px;
-    left: 100px;
+    top: 220.125px;
+    width: 76px;
+    height: 23.25px;
+    left: 757px; 
+    font-size: 7px;
 }
-
 #room27 {
-    top: 300px;
-    width: 400px;
-    right: 160px;
+    top: 266.625px;
+    width: 273.5px;
+    height: 23.25px;
+    left: 105px; 
 }
-
 #room28 {
-    top: 345px;
-    width: 400px;
-    right: 160px;
+    top: 266.625px;
+    width: 422px;
+    height: 23.25px;
+    left: 411px; 
 }
-
 #room29 {
-    top: 370px;
-    width: 400px;
-    height: 75px;
-    right: 160px;
-    
+    top: 313.15px;
+    width: 273.5px;
+    height: 23.25px;
+    left: 105px; 
 }
-
 #room30 {
-    top: 440px;
-    width: 400px;
-    right: 160px;
+    top: 313.15px;
+    width: 422px;
+    height: 23.25px;
+    left: 411px; 
 }
-
 #room31 {
-    top: 345px;
-    left: 100px;
-    height: 95px;
-    width: 90px;  
+    top: 359.665px;
+    width: 72.5px;
+    height: 117.5px;
+    left: 105px;  
+    background-color: aquamarine;
 }
-
 #room32 {
-    top: 440px;
-    left: 100px;
-    height: 25px;
-    width: 90px;
-    font-size: 10px;
+    top: 476.625px;
+    width: 72.5px;
+    height: 23.25px;
+    left: 105px;  
+    font-size: 7px;  
 }
-
 #room33 {
-    top: 345px;
-    left: 190px;
-    height: 45px;
-    width: 210px;
+    top: 359.665px;
+    width: 90px;
+    height: 46.5px;
+    left: 177.5px;  
+    background-color: rgb(247, 190, 221);
 }
-
-#room34{
-    top: 390px;
-    left: 190px;
-    height: 76px;
-    width: 140px;   
+#room34 {
+    top: 359.665px;
+    width: 110px;
+    height: 23.25px;
+    left: 267.5px;  
 }
-
-#room35{
-    top: 390px;
-    left: 330px;
-    height: 76px;
-    width: 70px;
-    font-size: 12px;
+#room35 {
+    top: 359.665px;
+    width: 422px;
+    height: 23.25px;
+    left: 411px; 
 }
-
 #room36 {
-    top: 0px;
-    height: 100px;
-    width: 70px;
-    right: 50px;  
+    top: 406.165px;
+    width: 200px;
+    height: 94px;
+    left: 177.5px;  
+    background-color: rgb(65, 250, 210);
 }
-
 #room37 {
-    top: 100px;
-    height: 265px;
-    width: 120px;
-    right: 0px;  
+    top: 382.915px;
+    width: 422px;
+    height: 94px;
+    left: 411px; 
+    background-color: aqua;
 }
-
 #room38 {
-    top: 345px;
-    height: 120px;
-    width: 120px;
-    right: 0px;  
+    top: 476.625px;
+    width: 422px;
+    height: 23.25px;
+    left: 411px; 
 }
-
-#room39{
+#room39 {
     top: 0px;
-    height: 180px;
-    width: 50px;
-    right: 0px;
-    font-size: 10px;
+    width: 125PX;
+    height: 383.875px;
+    left: 875px;
+    background-color: rgb(210, 228, 228);
+}
+#room40 {
+    top: 382.915px;
+    width: 125px;
+    height: 117.5px;
+    left: 875px;
+    background-color: rgb(239, 186, 142);
+}
+#room41 {
+    top: 476.625px;
+    width: 34px;
+    height: 23.25px;
+    left: 377.5px; 
+    background-color: #fbff12;
+    font-size: 3px;
+}
+#room42 {
+    top: 499.875px;
+    width: 104.5px;
+    height: 46.5px;
+    left: 72.5px;   
+    background-color: rgb(244, 199, 187); 
+}
+#room43 {
+    top: 499.875px;
+    width: 42.5px;
+    height: 46.5px;
+    left: 833px;   
+    font-size: 7px;
+    background-color: rgb(244, 199, 187); 
+}
+#room44 {
+    top: 430.125px;
+    width: 15.5px;
+    height: 46.5px;
+    left: 57px;   
+    font-size: 3px;
+    background-color: rgb(234, 11, 11); 
+    border: 1px solid #e3e3e3
+}
+#room45 {
+    top: 0px;
+    width: 74px;
+    height: 58.125px;
+    left: 875px;
+    font-size: 7.5px;
+    background-color: rgb(250, 152, 23);
+    border: 0.5px solid #e3e3e3;
+}
+#room46 {
+    top: 58.125px;
+    width: 74px;
+    height: 34.875px;
+    left: 875px;
+    font-size: 7.5px;
+    background-color: rgb(250, 152, 23);
+    border: 0.5px solid #e3e3e3;
+}
+#room47 {
+    top:174.625px;
+    width: 30px;
+    height: 23.25px;
+    left: 348.5px; 
+    font-size: 6px;
+    background-color: aqua;
 }
