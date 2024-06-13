@@ -11,16 +11,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $fastMovingData = KlasifikasiMaterial::where('tipeMaterial', 'fast moving')->get(['itemNumber', 'tipeMaterial']);
+        // Mengosongkan data yang akan dikirim ke view
+        $data = [];
 
-        $labels = $fastMovingData->pluck('itemNumber')->toArray();
-        $dataTipeMaterial = $fastMovingData->pluck('tipeMaterial')->toArray();
-
-        $data = [
-            'labels' => $labels,
-            'tipeMaterial' => $dataTipeMaterial,
-        ];
-        $data = DB::table('klasifikasiMaterial')->get();
         return view('dashboard')->with('data', $data);
     }
 }

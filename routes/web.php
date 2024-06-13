@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DenahrakController;
 use App\Http\Controllers\KapsrakController;
@@ -22,10 +22,16 @@ use App\Http\Controllers\ProsdtgController;
 Route::get('/', function () {
     return view('Login.loginUser');
 });
-Route::get('/login', [LoginController::class, 'halamanLogin']);
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/dashboard', [AuthController::class, 'dashboard'])->middleware('auth')->name('dashboard');
+
 Route::get('/dashboard', [DashboardController::class, 'index']);
 //Route::resource('/dashboard', DashboardController::class);
-Route::resource('/denahrak', DenahrakController::class);
+Route::middleware('auth')->resource('/denahrak', DenahrakController::class);
 Route::resource('/kapsrak', KapsrakController::class);
 Route::resource('/kapsmaterial', KapsmaterialController::class);
 Route::resource('/prosdtg', ProsdtgController::class);
