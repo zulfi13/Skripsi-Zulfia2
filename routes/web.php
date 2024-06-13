@@ -19,15 +19,11 @@ use App\Http\Controllers\ProsdtgController;
 |
 */
 
-Route::get('/', function () {
-    return view('Login.loginUser');
-});
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/dashboard', [AuthController::class, 'dashboard'])->middleware('auth')->name('dashboard');
+//Route::get('/dashboard', [AuthController::class, 'dashboard'])->middleware('auth')->name('dashboard');
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 //Route::resource('/dashboard', DashboardController::class);
@@ -50,3 +46,4 @@ Route::put('/kapsmaterial/update/{qty}', [KapsmaterialController::class, 'update
 Route::delete('/kapsmaterial/{id}', 'KapsmaterialController@destroy')->name('kapsmaterial.destroy');
 //Route::get('/kapsrak/index', [KapsrakController::class, 'index']);
 Route::get('/kapsrak/getdata', [KapsrakController::class, 'getdata'])->name("kapsrak.getdata");
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

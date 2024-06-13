@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        return view('Login.userLogin');
+        return view('Auth.loginUser');
     }
 
     public function login(Request $request)
@@ -35,5 +35,14 @@ class AuthController extends Controller
     public function dashboard()
     {
         return view('dashboard');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+    
+        return redirect('/login');
     }
 }
