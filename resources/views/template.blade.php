@@ -71,18 +71,11 @@
 
         <!-- Nav Item - Kedatangan -->
         <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapsePages">
+            <a class="nav-link" href="kedatanganmaterial">
                 <i class="fas fa-fw fa-truck"></i>
                 <span>Kedatangan Material</span>
             </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingPages"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="prosdtg">Diproses</a>
-                    <a class="collapse-item" href="prosdtg">Diantar</a>
-                </div>
-            </div>
+            
         </li>
 
         <!-- Nav Item - Manajemen Kapasitas -->
@@ -136,7 +129,7 @@
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-900 small">ZULFIA LUTFIANI</span>
                                     <img class="img-profile rounded-circle"
-                                        src="{{asset('template/img/zulfi.jpeg')}}">
+                                        src="{{asset('template/img/zulfi1.jpg')}}">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

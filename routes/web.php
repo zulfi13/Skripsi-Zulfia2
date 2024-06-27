@@ -6,7 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DenahrakController;
 use App\Http\Controllers\KapsrakController;
 use App\Http\Controllers\KapsmaterialController;
-use App\Http\Controllers\ProsdtgController;
+use App\Http\Controllers\IncomingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::middleware('auth')->resource('/denahrak', DenahrakController::class);
 Route::resource('/kapsrak', KapsrakController::class);
 Route::resource('/kapsmaterial', KapsmaterialController::class);
-Route::resource('/prosdtg', ProsdtgController::class);
+Route::resource('/kedatanganmaterial', IncomingController::class);
 Route::get('/tambah-rak-form', [KapsrakController::class, 'create'])->name('kapsrak.create');
 Route::get('/kapsrak/newrak', [KapsrakController::class, 'create'])->name('kapsrak.newrak');
 Route::post('/kapsrak/store', [KapsrakController::class, 'store'])->name('kapsrak.store');
