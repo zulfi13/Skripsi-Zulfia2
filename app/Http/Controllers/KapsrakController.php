@@ -2,32 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataRak;
+use App\Models\Rak;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB;
 use App\Http\Requests;
+use Validator;
+use DB;
 
 class KapsrakController extends Controller
 {
     public function index()
     {
-        $dataRaks = DB::Select("Select * from dataRak");
-        return view('kapsrak', ['dataRaks' => $dataRaks]);
-        return view('kapsrak.index', ['data' => $data]);
-        $dataRak = DataRak::selectRaw('*, GETDATE() as updated_at')->find($id);
-        //$dataRak->when($request->kode, function ($query) use($request) {
-            //return $query->wherekode($request->'kode');
-       // });
-        return view('kapsrak', ['kode' => $kode->paginate(10)]);
+        $data = DB::table('raks')->get();
+        // return response()->json($data);
+        return view('rak.index', compact('data'));
     }
+
     public function create()
     {
-        return view('tambahrak');
+        return view('rak.create');
     }
 
     public function store(Request $request)
     {
+        // return response()->json($request->all());
+        $validated = Validator::make($request->all(), [
+            'kode' => 'required',
+            'alamat' => 'required',
+            'panjang' => 'required',
+            'lebar' => 'required',
+            'tinggi' => 'required',
+            // 'tinggiAts' => 'required',
+            'tinggiTtl' => 'required',
+            'volume' => 'required',
+        ]);
+
+        if ($validated->fails()) {
+            toast('Data gagal ditambahkan.', 'error');
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+
         $kode = $request->input('kode');
         $alamat = $request->input('alamat');
         $panjang = $request->input('panjang');
@@ -35,36 +49,81 @@ class KapsrakController extends Controller
         $tinggi = $request->input('tinggi');
         $tinggiAts = $request->input('tinggiAts');
         $tinggiTtl = $request->input('tinggiTtl');
-        $volume = $request->input('volume');
+        $volume = intval(str_replace('.', '', $request->volume));
 
-        DB::table('DataRak')->insert([
+        DB::table('raks')->insert([
             'kode' => $kode,
             'alamat' => $alamat,
             'panjang' => $panjang,
             'lebar' => $lebar,
             'tinggi' => $tinggi,
-            'tinggiAts' => $tinggiAts,
-            'tinggiTtl' => $tinggiTtl,
+            'tinggi_atas' => $tinggiAts,
+            'tinggi_total' => $tinggiTtl,
             'volume' => $volume,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
-        // Redirect atau kembalikan respons sesuai kebutuhan
-        return redirect()->route('kapsrak.index')->with('success', 'New rak added successfully'); 
+
+        toast('Data berhasil ditambahkan','success');
+        return redirect()->route('kapsrak.index'); 
         
     }
+
     public function edit($id)
     {
-        // Mendapatkan data berdasarkan ID
-        $rak = Rak::find($id);
+        $data = Rak::find($id);
 
-        // Menampilkan halaman edit dengan membawa data rak
-        return view('kapsrak.edit', compact('rak'));
-    } 
-    public function destroy($alamat)
-    {
-        // Temukan data berdasarkan alamat
-        $dataRak = DB::delete("delete datarak where alamat = '$alamat'");
-        return redirect()->route('kapsrak.index')->with('success', 'Data berhasil dihapus');
+        return view('rak.edit', compact('data'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $volume = intval(str_replace('.', '', $request->volume));
+
+        $validated = Validator::make($request->all(), [
+            'kode' => 'required',
+            'alamat' => 'required',
+            'panjang' => 'required',
+            'lebar' => 'required',
+            'tinggi' => 'required',
+            // 'tinggiAts' => 'required',
+            'tinggiTtl' => 'required',
+            'volume' => 'required',
+        ]);
+
+        if ($validated->fails()) {
+            toast('Data gagal diubah.', 'error');
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
+
+        $rak = Rak::find($id);
+        $rak->kode = $request->kode;
+        $rak->alamat = $request->alamat;
+        $rak->panjang = $request->panjang;
+        $rak->lebar = $request->lebar;
+        $rak->tinggi = $request->tinggi;
+        $rak->tinggi_atas = $request->tinggiAts;
+        $rak->tinggi_total = $request->tinggiTtl;
+        $rak->volume = $volume;
+        $rak->save();
+
+        toast('Data berhasil diubah.', 'success');
+        return redirect()->route('kapsrak.index');
+    }
+
+    public function delete($id)
+    {
+        $data = Rak::find($id);
+        if (!$data) {
+            toast('Data tidak ditemukan.', 'error');
+            return redirect()->route('kapsrak.index');
+        }
+        $data->delete();
+
+        toast('Data berhasil dihapus.', 'success');
+        return redirect()->route('kapsrak.index');
+    }
+
     // public function filterByKode($kode)
     // {
     //     $dataRak = DataRak::where('kode', $kode)->get();

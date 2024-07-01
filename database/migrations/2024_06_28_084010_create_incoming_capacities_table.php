@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
+        Schema::create('incoming_capacities', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('total_kapasitas');
+            $table->bigInteger('total_terpakai')->nullable();
+            $table->bigInteger('sisa_kapasitas')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('incoming_capacities');
     }
 };

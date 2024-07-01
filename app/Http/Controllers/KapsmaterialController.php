@@ -2,111 +2,121 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataMaterial;
+use App\Models\Material;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB;
 use App\Http\Requests;
-use App\Support\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Validator;
+use DB;
 
 class KapsmaterialController extends Controller
 {
     public function index(Request $request)
     {
-        $dataMaterials = DB::Select("Select * from datamaterial");
-        // $currentPage = request()->get('page', 1); // Get the current page from the request
-        // $perPage = 20;
-        // $offset = ($currentPage - 1) * $perPage;
-        // $items = array_slice($dataMaterials, $offset, $perPage);
-        // $dataMaterials = new LengthAwarePaginator($items, count($dataMaterials), $perPage, $currentPage, [
-        //     'path' => request()->url(),
-        //     'query' => request()->query(),
-        // ]);
-
-        $itemNumber = $request->get('itemNumber');  
-        if($itemNumber){
-            $dataMaterials = DataMaterial::where("itemNumber","LIKE","%$itemNumber%")->get();
-        }
-        $productName = $request->get('productName');  
-        if($productName){
-            $dataMaterials = DataMaterial::where("productName","LIKE","%$productName%")->get();
-        }
-        
-       return view('kapsmaterial', ['dataMaterials' => $dataMaterials]);
+        $data = DB::table('materials')->join('raks', 'materials.rak_id', '=', 'raks.id')
+                    ->select('materials.*', 'raks.alamat as rak_alamat')
+                    ->orderBy('materials.id', 'desc')
+                    ->get();
+        // return response()->json($data);
+        return view('material.index', compact('data'));
     
     }
 
     public function create()
     {
-        return view('tambahmat');
+        $rak = DB::table('raks')->select('id', 'alamat')->get();
+        // return response()->json($rak);
+        return view('material.create', compact('rak'));
     }
 
     public function store(Request $request)
     {
-        $itemNumber = $request->input('itemNumber');
-        $partNumber = $request->input('partNumber');
-        $productName = $request->input('productName');
-        $pjg = $request->input('pjg');
-        $lbr = $request->input('lbr');
-        $jr = $request->input('jr');
-        $tng = $request->input('pjg');
-        $vol = $request->input('lbr');
-        $qtyPack = $request->input('qtyPack');
-        $qtyBox = $request->input('qtyBox');
-        $berat = $request->input('berat');
+        // return response()->json($request->all());
+        $validated = Validator::make($request->all(), [
+            'itemNumber' => 'required',
+            'partNumber' => 'required',
+            'productName' => 'required',
+            'rak_id' => 'required'
+        ]);
 
-        DB::insert("insert into DataMaterial(itemNumber, partNumber, productName, pjg, lbr, tng, jr, vol, qtyBox, qtyPack, berat) values('$itemNumber', '$partNumber', '$productName', '$pjg', '$lbr', '$tng', '$jr', '$vol', '$qtyBox', '$qtyPack', '$berat')");
+        if($validated->fails()) {
+            toast('Data gagal disimpan.', 'error');
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
 
-        // Redirect atau kembalikan respons sesuai kebutuhan
-        return redirect()->route('kapsmaterial.index')->with('success', 'New material added successfully');
-        
+        $rak_id = $request->rak_id;
+        $itemNumber = $request->itemNumber;
+        $partNumber = $request->partNumber;
+        $productName = $request->productName;
+        $pjg = $request->pjg;
+        $lbr = $request->lbr;
+        $jr = $request->jr;
+        $tng = $request->tng;
+        $vol = intval(str_replace('.', '', $request->vol));
+        $qtyPack = $request->qtyPack;
+        $qtyBox = $request->qtyBox;
+        $total_volume = $vol * $qtyBox;
+
+        $material = new Material();
+        $material->rak_id = $rak_id;
+        $material->item_number = $itemNumber;
+        $material->part_number = $partNumber;
+        $material->product_name = $productName;
+        $material->panjang = $pjg;
+        $material->lebar = $lbr;
+        $material->tinggi = $tng;
+        $material->jr = $jr;
+        $material->volume = $vol;
+        $material->qty_box = $qtyBox;
+        $material->qty_pack = $qtyPack;
+        $material->total_volume = $total_volume;
+        $material->save();
+
+        toast('Data berhasil disimpan.', 'success');
+        return redirect()->route('kapsmaterial.index');
     }
 
     public function edit($id)
     {
-        $dataMaterial = datamaterial::find($id);
-        return view('editKapsmaterial', ['dataMaterial' => $dataMaterial]);
+        $data = Material::find($id);
+
+        return view('material.edit', compact('data'));
     }
 
-    public function update(Request $request, $qty)
+    public function update(Request $request)
     {
-        $dataMaterial = datamaterial::where('qtyPack', $qty)->first();
-
-        // Validasi request jika perlu
-        $request->validate([
+        $validatedData = Validator::make($request->all(), [
+            'volume' => 'required',
             'qtyPack' => 'required',
             'qtyBox' => 'required',
-            // ... tambahkan validasi lainnya sesuai kebutuhan
         ]);
 
-        // Update kolom qtyPack dan qtyBox
-        $dataMaterial->qtyPack = $request->input('qtyPack');
-        $dataMaterial->qtyBox = $request->input('qtyBox');
-        // ... tambahkan update untuk kolom lainnya jika perlu
+        $volume = $request->volume;
+        $pack = $request->qtyPack;
+        $box = $request->qtyBox;
 
-        // Simpan perubahan
-        $dataMaterial->save();
+        $total_volume = $volume * $box;
 
-        // Redirect atau melakukan tindakan lainnya
-        return redirect()->route('kapsmaterial.index')->with('success', 'Material berhasil diupdate.');
+        $material = Material::findOrFail($request->id);
+        $material->qty_pack = $pack;
+        $material->qty_box = $box;
+        $material->total_volume = $total_volume;
+        $material->save();
+
+        toast('Material berhasil diupdate.', 'success');
+        return redirect()->route('kapsmaterial.index');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        // Temukan data berdasarkan ID
-        $dataMaterial = DataMaterial::find($id);
-
-        // Periksa apakah data ditemukan
-        if (!$dataMaterial) {
-            return redirect()->route('kapsmaterial.index')->with('error', 'Data tidak ditemukan');
+        $data = Material::find($id);
+        if (!$data) {
+            toast('Data tidak ditemukan.', 'error');
+            return redirect()->route('kapsmaterial.index');
         }
+        $data->delete();
 
-        // Lakukan penghapusan
-        $dataMaterial->delete();
-
-        // Redirect ke halaman indeks atau halaman lain yang sesuai
-        return redirect()->route('kapsmaterial.index')->with('success', 'Data berhasil dihapus');
+        toast('Data berhasil dihapus.', 'success');
+        return redirect()->route('kapsmaterial.index');
     }
-
 }

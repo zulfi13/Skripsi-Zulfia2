@@ -1,5 +1,11 @@
 @extends('template')
 
+@section('custom-css')
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@1.5.2/dist/select2-bootstrap4.min.css" rel="stylesheet" />
+@endsection
+
 @section('content')
 <div class="container mt-4">
     <div class="row justify-content-center">
@@ -27,20 +33,30 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="rak">Rak</label>
+                            <select name="rak_id" id="rak" class="form-control select2" required>
+                                <option selected disabled value="">Pilih Rak</option>
+                                @foreach($rak as $rakItem)
+                                <option value="{{ $rakItem->id }}">{{ $rakItem->alamat }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="pjp">Panjang</label>
                             <input type="text" class="form-control" id="panjang" name="pjg" onchange="updateVolume()">
                         </div>
-
-						<div class="form-group">
+                    
+                        <div class="form-group">
                             <label for="lbr">Lebar</label>
                             <input type="text" class="form-control" id="lebar" name="lbr" onchange="updateVolume()">
                         </div>
-
-						<div class="form-group">
+                    
+                        <div class="form-group">
                             <label for="jr">Diameter</label>
                             <input type="text" class="form-control" id="diameter" name="jr" onchange="updateVolume()">
                         </div>
-
+                    
                         <div class="form-group">
                             <label for="tng">Tinggi</label>
                             <input type="text" class="form-control" id="tinggi" name="tng" onchange="updateVolume()">
@@ -61,15 +77,6 @@
                             <input type="text" class="form-control" id="qtyBox" name="qtyBox" required>
                         </div>
 
-						<div class="form-group">
-                            <label for="berat">Berat</label>
-                            <input type="text" class="form-control" id="berat" name="berat" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="berat">Date&Time</label>
-                            <input type="datetime-local" class="form-control" id="datetime" name="datetime" required>
-                        </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-success">Add</button>
                         </div>
@@ -79,6 +86,9 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('custom-js')
 <script>
     function updateVolume() {
         // Ambil nilai dari panjang, lebar, dan tinggi
@@ -89,7 +99,7 @@
         // Jika panjang, lebar, dan tinggi diisi, itu adalah balok
         if (panjang && lebar && tinggi) {
             var volume = panjang * lebar * tinggi;
-            document.getElementById('volume').value = volume.toFixed(2);
+            document.getElementById('volume').value = volume.toLocaleString('id-ID', { maximumFractionDigits: 2 });
             return;
         }
 
@@ -100,15 +110,19 @@
         if (diameter && tinggi) {
             var jariJari = diameter / 2;
             var volume = Math.PI * Math.pow(jariJari, 2) * tinggi;
-            document.getElementById('volume').value = volume.toFixed(2);
+            document.getElementById('volume').value = volume.toLocaleString('id-ID', { maximumFractionDigits: 2 });
         }
     }
-	function showSuccessNotification() {
-        toastr.success('Data material berhasil ditambahkan', 'Sukses');
-    }
 </script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
-// Mengisi otomatis kolom datetime dengan tanggal dan waktu saat ini
-document.getElementById('datetime').valueAsDate = new Date();
+    $(document).ready(function() {
+        $('#rak').select2({
+            theme: 'bootstrap4',
+            placeholder: 'Pilih Rak',
+        });
+    });
 </script>
 @endsection
