@@ -184,9 +184,9 @@
                     }
 
                     $('#rak-info').text(rakName);
-                    $('#total-volume').text(formatNumber(Number(response.total_volume)));
-                    $('#total-terpakai').text(formatNumber(Number(response.total_terpakai)));
-                    $('#total-sisa').text(formatNumber(Number(response.total_sisa)));
+                    $('#total-volume').text(formatNumber(Number(response.total_volume)) + ' CM(3)');
+                    $('#total-terpakai').text(formatNumber(Number(response.total_terpakai)) + ' CM(3)');
+                    $('#total-sisa').text(formatNumber(Number(response.total_sisa)) + ' CM(3)');
 
                     $('a .room').each(function() {
                         var currentRoomId = $(this).attr('id').replace('room', '');

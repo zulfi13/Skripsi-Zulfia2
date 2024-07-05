@@ -30,27 +30,29 @@
         </div>
         <hr>
         <div class="table-responsive">
-            <table class="table table-bordered border-primary dt-responsive nowrap" id="example2" style="width:100%">
+            <table id="example2" class="table table-bordered table-hover dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Kode</th>
-                        <th>Alamat</th>
+                        <th>Rak</th>
                         <th>Panjang</th>
                         <th>Lebar</th>
                         <th>Tinggi</th>
                         <th>Tinggi Atas</th>
                         <th>Tinggi Total</th>
                         <th>Volume</th>
-                        <th>Actions</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach($data as $key => $value)
                     <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $value->kode }}</td>
-                        <td>{{ $value->alamat }}</td>
+                        <td>
+                            <b>Kode : </b>{{ $value->kode }}
+                            <br>
+                            <b>Alamat : </b> {{ $value->alamat }}
+                        </td>
                         <td>{{ $value->panjang }}</td>
                         <td>{{ $value->lebar }}</td>
                         <td>{{ $value->tinggi }}</td>

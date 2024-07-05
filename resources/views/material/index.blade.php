@@ -12,6 +12,13 @@
     <script defer src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
     <script defer src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script defer src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>
+    <style>
+        /* Menyesuaikan lebar kolom aksi */
+        .action-column {
+            min-width: 100px; /* Sesuaikan nilai ini sesuai kebutuhan */
+            white-space: nowrap; /* Mencegah teks membungkus ke baris baru */
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -31,7 +38,7 @@
       </div>
       <hr>
       <div class="col-sm-12">
-        <table class="table table-bordered border-primary dt-responsive nowrap" id="example2" style="width:100%">
+        <table id="example2" class="table table-bordered table-hover dt-responsive nowrap" style="width:100%">
           <thead>
             <tr>
               <th>No.</th>
@@ -40,7 +47,7 @@
               <th>Quantity</th> 
               <th>Volume (cm3)</th>
               <th>Tanggal</th>
-              <th>Actions</th>
+              <th class="action-column">Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -76,7 +83,7 @@
                     <b>Total Volume : </b>{{ number_format($value->total_volume, 0, ",", ".") }}
                   </td>
                   <td>{{ \Carbon\Carbon::make($value->updated_at)->isoFormat('DD MMMM YYYY') }}</td>
-                  <td>
+                  <td class="action-column">
                     <div class="btn-group">
                       <a href="{{ route('kapsmaterial.edit', $value->id) }}" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit fa-xs"></i>
@@ -101,7 +108,10 @@
     <script>
         $(document).ready(function() {
             $('#example2').DataTable({
-                responsive: true
+                responsive: true,
+                columnDefs: [
+                    { targets: 'action-column', orderable: false }
+                ]
             });
         });
     </script>

@@ -18,7 +18,7 @@ class IncomingImport implements ToCollection
     {
         $this->incoming = Incoming::create([
             'file' => $nama_file,
-            'tanggal' => Carbon::now()->format('Y-m-d'),
+            'tanggal' => Carbon::now('Asia/Jakarta')->format('Y-m-d'),
             'luasan_kedatangan' => 0,
             'pic' => User::first()->name
         ]);
