@@ -12,13 +12,6 @@
     <script defer src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
     <script defer src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script defer src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>
-    <style>
-        /* Menyesuaikan lebar kolom aksi */
-        .action-column {
-            min-width: 100px; /* Sesuaikan nilai ini sesuai kebutuhan */
-            white-space: nowrap; /* Mencegah teks membungkus ke baris baru */
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -27,7 +20,7 @@
       <h6 class="m-0 font-weight-bold text-primary">Manajemen Kapasitas Material</h6>
   </div>
   <div class="card-body">
-    <div class="table-wrapper table-responsive">
+    <div class="table-responsive">
       <div class="row mb-2 d-flex justify-content-end mr-auto mt-2">
         <div class="ml-auto">
           <a href="{{ route('kapsmaterial.create') }}" class="btn btn-success">
@@ -37,7 +30,7 @@
         </div>
       </div>
       <hr>
-      <div class="col-sm-12">
+      <!-- <div class="col-sm-12"> -->
         <table id="example2" class="table table-bordered table-hover dt-responsive nowrap" style="width:100%">
           <thead>
             <tr>
@@ -47,7 +40,7 @@
               <th>Quantity</th> 
               <th>Volume (cm3)</th>
               <th>Tanggal</th>
-              <th class="action-column">Aksi</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -83,7 +76,7 @@
                     <b>Total Volume : </b>{{ number_format($value->total_volume, 0, ",", ".") }}
                   </td>
                   <td>{{ \Carbon\Carbon::make($value->updated_at)->isoFormat('DD MMMM YYYY') }}</td>
-                  <td class="action-column">
+                  <td>
                     <div class="btn-group">
                       <a href="{{ route('kapsmaterial.edit', $value->id) }}" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit fa-xs"></i>
@@ -98,7 +91,7 @@
             @endforeach
           </tbody>
         </table>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>
@@ -108,10 +101,7 @@
     <script>
         $(document).ready(function() {
             $('#example2').DataTable({
-                responsive: true,
-                columnDefs: [
-                    { targets: 'action-column', orderable: false }
-                ]
+                responsive: true
             });
         });
     </script>
