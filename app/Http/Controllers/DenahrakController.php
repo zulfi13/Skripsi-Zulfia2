@@ -18,15 +18,31 @@ class DenahrakController extends Controller
         $id = $request->id;
         $data = null;
 
-        if ($id == 11 || $id == 13 || $id == 14 || $id == 15 || $id == 16 || $id == 19) {
+        if ($id == 3 ||$id == 11 || $id == 13 || $id == 14 || $id == 15 || $id == 16 || $id == 19 || $id==20 || $id==21 ||
+            $id == 23 || $id == 24 || $id == 25 || $id == 26 || $id == 27 || $id == 28 || $id == 29 || 
+            $id == 30 || $id == 33 || $id == 34 || $id == 35 ) {
             $rakKode = '';
-            if ($id == 11 || $id == 13) {
+            if ($id == 3) { 
+                $rakKode = 'AREA TRANSIT A';
+            } elseif($id == 11 || $id == 13) {
                 $rakKode = 'A';
             } elseif ($id == 14 || $id == 15) {
                 $rakKode = 'B';
             } elseif ($id == 16 || $id == 19) {
                 $rakKode = 'C';
-            }
+            } elseif ($id == 20 || $id == 21) {
+                $rakKode = 'D';
+            } elseif ($id == 23 || $id == 24 || $id == 26) {
+                $rakKode = 'E';
+            } elseif ($id == 25) {
+                $rakKode = 'P';
+            }elseif ($id == 27 || $id == 28) {
+                $rakKode = 'F';
+            } elseif ($id == 29 || $id == 30) {
+                $rakKode = 'G';
+            } elseif ($id == 33 || $id == 34|| $id == 35) {
+                $rakKode = 'H';
+            } 
 
             $rakAddresses = $this->getRakAddresses($id);
 
@@ -79,6 +95,9 @@ class DenahrakController extends Controller
                 break;
             case 19:
                 $addresses = $this->generateAddresses('C', [1, 2, 3], 23, 37);
+                break;
+            case 20:
+                $addresses = $this->generateAddresses('D', [1, 2, 3], 1, 22);
                 break;
         }
         return $addresses;

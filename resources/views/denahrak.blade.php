@@ -44,7 +44,11 @@
         <div class="warehouse">
             <div class="room" id="room1">AREA SUBSTORE (WIRE) PRODUKSI</div>
             <div class="room" id="room2">AREA SUB MATERIAL & STATIONARY</div>
-            <div class="room" id="room3">AREA TRANSIT A 28 Pallet</div>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room3">AREA TRANSIT A 28 Pallet</div>
+            </a>
+
             <div class="room" id="room4">INCOMING</div>
             <div class="room" id="room5">QC INCOMING </div>
             <div class="room" id="room6">AREA CNC PRODUKSI </div>
@@ -52,43 +56,96 @@
             <div class="room" id="room8">Accessoris</div>
             <div class="room" id="room9"> Loket 2</div>
             <div class="room" id="room10"> Area Kanban</div>
+
             <a href="javascript:void(0);">
                 <div class="room" id="room11">RAK A (WIRE)</div>
             </a>
+
             <div class="room" id="room12">RAK KANBAN</div>
+
             <a href="javascript:void(0);">
                 <div class="room" id="room13">RAK A (WIRE)</div>
             </a>
+
             <a href="javascript:void(0);">
                 <div class="room" id="room14">RAK B (WIRE)</div>
             </a>
+
             <a href="javascript:void(0);">
                 <div class="room" id="room15">RAK B (ACCESSORIS)</div>
             </a>
+
             <a href="javascript:void(0);">
                 <div class="room" id="room16">RAK C (WIRE)</div>
             </a>
+
             <div class="room" id="room17">RAK AH-Switch</div>
             <div class="room" id="room18">KASIR</div>
+
             <a href="javascript:void(0);">
                 <div class="room" id="room19">RAK C (ASSY)</div>
             </a>
-            <div class="room" id="room20"> RAK D (TERMINAL)</div>
-            <div class="room" id="room21"> RAK D ( PART SUB ASSY)</div>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room20"> RAK D (TERMINAL)</div>
+            </a>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room21"> RAK D ( PART SUB ASSY)</div>
+            </a>
+
             <div class="room" id="room22">AREA WIRE BATTERAY CABLE 12 Pallet</div>
-            <div class="room" id="room23"> RAK E (TERMINAL)</div>
-            <div class="room" id="room24"> RAK E (PART SUB ASSY)</div>
-            <div class="room" id="room25"> RAK P (BC)</div>
-            <div class="room" id="room26"> RAK E (PART)</div>
-            <div class="room" id="room27"> RAK F (TERMINAL)</div>
-            <div class="room" id="room28"> RAK F (PART SUB ASSY)</div>
-            <div class="room" id="room29"> RAK G (SUB ASSY)</div>
-            <div class="room" id="room30"> RAK G (PART SUB.ASSY)</div>
-            <div class="room" id="room31"> AREA TRANSIT B</div>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room23"> RAK E (TERMINAL)</div>
+            </a>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room24"> RAK E (PART SUB ASSY)</div>
+            </a>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room25"> RAK P (BC)</div>
+            </a>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room26"> RAK E (PART)</div>
+            </a>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room27"> RAK F (TERMINAL)</div>
+            </a>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room28"> RAK F (PART SUB ASSY)</div>
+            </a>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room29"> RAK G (SUB ASSY)</div>
+            </a>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room30"> RAK G (PART SUB.ASSY)</div>
+            </a>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room31"> AREA TRANSIT B</div>
+            </a>
+
             <div class="room" id="room32"> PARKIR FORKLIFT</div>
-            <div class="room" id="room33"> RAK H (CS/IS)</div>
-            <div class="room" id="room34"> RAK H (SUB ASSY)</div>
-            <div class="room" id="room35"> RAK H (PART SUB ASSY)</div>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room33"> RAK H (CS/IS)</div>
+            </a>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room34"> RAK H (SUB ASSY)</div>
+            </a>
+
+            <a href="javascript:void(0);">
+                <div class="room" id="room35"> RAK H (PART SUB ASSY)</div>
+            </a>
+
             <div class="room" id="room36">AREA CS/IS</div>
             <div class="room" id="room37"> AREA TRANSIT GOEI</div>
             <div class="room" id="room38"> RAK I(MATERIAL DEADSTOCK)</div>
@@ -159,6 +216,9 @@
                     var rakName = '';
 
                     switch (roomId) {
+                        case '3':
+                            rakName = 'AREA TRANSIT A';
+                            break;
                         case '11':
                             rakName = 'RAK A (WIRE) KIRI';
                             break;
@@ -177,6 +237,43 @@
                         case '19':
                             rakName = 'RAK C (ASSY) KANAN';
                             break;
+                        case '20':
+                            rakName = 'RAK D (TERMINAL) KIRI';
+                            break;
+                        case '21':
+                            rakName = 'RAK D (PART SUB ASSY) KANAN';
+                            break;
+                        case '23':
+                            rakName = 'RAK E (TERMINAL) KIRI';
+                            break;
+                        case '24':
+                            rakName = 'RAK E (PART SUB ASSY) KANAN';
+                            break;
+                        case '25':
+                            rakName = 'RAK P (BC) KANAN';
+                            break;
+                        case '26':
+                            rakName = 'RAK E (PART) KANAN';
+                            break;
+                        case '27':
+                            rakName = 'RAK F (TERMINAL) KIRI';
+                            break;
+                        case '28':
+                            rakName = 'RAK F (PART SUB ASSY) KANAN';
+                        case '29':
+                            rakName = 'RAK G (SUB ASSY) KIRI';
+                            break;
+                        case '30':
+                            rakName = 'RAK G (PART SUB ASSY) KANAN';
+                            break;
+                        case '33':
+                            rakName = 'RAK H (CS/IS) KIRI';
+                            break;
+                        case '34':
+                            rakName = 'RAK H (SUB ASSY) KIRI';
+                            break;
+                        case '35':
+                            rakName = 'RAK H (PART SUB ASSY) KANAN';
                     }
 
                     function formatNumber(num) {
